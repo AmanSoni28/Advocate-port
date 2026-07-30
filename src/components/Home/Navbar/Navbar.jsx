@@ -194,7 +194,7 @@ export default function Navbar() {
 
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="lg:hidden text-white"
+            className="xl:hidden text-white"
           >
 
             {menuOpen ? <X size={30} /> : <Menu size={30} />}
@@ -207,7 +207,7 @@ export default function Navbar() {
 
         {menuOpen && (
 
-          <div className="lg:hidden bg-[#07172E]">
+          <div className="xl:hidden bg-[#07172E]">
 
             <div className="flex flex-col py-6">
 
