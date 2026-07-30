@@ -6,6 +6,7 @@ import { useLanguage } from "@/context/LanguageContext.jsx";
 import { useHomeContent } from "@/components/HomeContentProvider.jsx";
 import { pick } from "@/lib/pickField";
 import { imageUrl } from "@/lib/imageUrl";
+import Reveal from "@/components/Shared/Reveal.jsx";
 
 export default function About() {
   const { lang } = useLanguage();
@@ -24,7 +25,7 @@ export default function About() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-10 items-start">
           {/* LEFT IMAGE */}
 
-          <div className="relative lg:col-span-3">
+          <Reveal className="relative lg:col-span-3">
             <div
               className="
   relative
@@ -39,14 +40,14 @@ export default function About() {
                 src={imageUrl(about.imageId) || "/images/About.png"}
                 alt="About"
                 fill
-                className="object-cover object-center"
+                className="object-cover object-center transition-transform duration-700 hover:scale-105"
               />
             </div>
-          </div>
+          </Reveal>
 
           {/* RIGHT CONTENT */}
 
-          <div className="lg:col-span-5">
+          <Reveal className="lg:col-span-5" delay={100}>
             <span
               className="
               text-[#D4AF37]
@@ -141,15 +142,15 @@ export default function About() {
                 </p>
               </div>
             </div>
-          </div>
+          </Reveal>
 
-          <div className="lg:col-span-4">
+          <Reveal className="lg:col-span-4" delay={200}>
             <div className="relative pl-2">
               <div className="absolute left-[25px] top-0 bottom-0 w-[2px] bg-[#D4AF37]/50"></div>
 
               {timeline.map((item, index) => (
-                <div key={index} className="relative flex gap-5 pb-8">
-                  <div className="w-9 h-9 rounded-full border-2 border-[#D4AF37] bg-white flex justify-center items-center shrink-0">
+                <div key={index} className="group relative flex gap-5 pb-8">
+                  <div className="w-9 h-9 rounded-full border-2 border-[#D4AF37] bg-white flex justify-center items-center shrink-0 transition-all duration-300 group-hover:scale-110 group-hover:bg-[#D4AF37]">
                     <div className="w-2.5 h-2.5 rounded-full bg-[#D4AF37]"></div>
                   </div>
 
@@ -163,7 +164,7 @@ export default function About() {
                 </div>
               ))}
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

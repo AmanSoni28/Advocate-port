@@ -26,7 +26,7 @@ export default function WhyChoose() {
 
       <div className="container">
 
-        <div className="relative overflow-hidden rounded-2xl bg-[#07172E] border border-[#D4AF37]/20 px-4 lg:px-20">
+        <div className="motion-rise relative overflow-hidden rounded-2xl bg-[#07172E] border border-[#D4AF37]/20 px-4 lg:px-20">
 
           {/* Heading */}
 
@@ -136,10 +136,11 @@ export default function WhyChoose() {
                     py-10
                     border-r
                     border-[#D4AF37]/10
-                    transition-colors
+                    transition-all
                     duration-300
                     hover:bg-white/5
                     hover:backdrop-blur-xl
+                    hover:-translate-y-1
                     "
                   >
 
@@ -154,6 +155,10 @@ export default function WhyChoose() {
                         flex
                         items-center
                         justify-center
+                        transition-transform
+                        duration-300
+                        group-hover:rotate-6
+                        group-hover:scale-110
                         "
                       >
 

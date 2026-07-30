@@ -27,7 +27,7 @@ export default function Hero() {
           fill
           priority
           sizes="100vw"
-          className="hidden md:block object-cover opacity-100 brightness-[0.9]"
+          className="hidden md:block object-cover opacity-100 brightness-[0.9] motion-hero-image"
         />
 
         {/* Mobile image */}
@@ -37,7 +37,7 @@ export default function Hero() {
           fill
           priority
           sizes="100vw"
-          className="block md:hidden object-cover opacity-100 brightness-[0.9]"
+          className="block md:hidden object-cover opacity-100 brightness-[0.9] motion-hero-image"
         />
       </div>
 
@@ -56,7 +56,7 @@ export default function Hero() {
           {/* LEFT */}
 
           <div>
-            <h1 className="heading-font text-white text-4xl sm:text-5xl lg:text-7xl leading-tight font-bold">
+            <h1 className="motion-rise heading-font text-white text-4xl sm:text-5xl lg:text-7xl leading-tight font-bold">
               {pick(hero, "line1", lang)}
 
               <br />
@@ -70,21 +70,21 @@ export default function Hero() {
               {pick(hero, "line3", lang)}
             </h1>
 
-            <p className="mt-8 text-lg sm:text-xl font-semibold text-white">
+            <p className="motion-rise mt-8 text-lg sm:text-xl font-semibold text-white" style={{ animationDelay: "120ms" }}>
               {pick(hero, "subtitle", lang)}
             </p>
 
-            <p className="mt-6 text-gray-300 leading-8 max-w-xl">
+            <p className="motion-rise mt-6 text-gray-300 leading-8 max-w-xl" style={{ animationDelay: "220ms" }}>
               {pick(hero, "paragraph", lang)}
             </p>
 
             {/* Buttons */}
 
-            <div className="mt-10 flex flex-wrap gap-5">
+            <div className="motion-rise mt-10 flex flex-wrap gap-5" style={{ animationDelay: "320ms" }}>
               <button
                 type="button"
                 onClick={openModal}
-                className="bg-[#D4AF37] hover:bg-[#bf9830] transition-colors duration-200 text-[#07172E] px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold flex items-center justify-center gap-3 shadow-xl w-full sm:w-auto"
+                className="motion-gold-pulse bg-[#D4AF37] hover:bg-[#bf9830] transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl text-[#07172E] px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold flex items-center justify-center gap-3 shadow-xl w-full sm:w-auto"
               >
                 <CalendarDays size={20} />
 
@@ -93,7 +93,7 @@ export default function Hero() {
 
               <Link
                 href="/practice-areas"
-                className="border-2 border-[#D4AF37] text-[#F5CB5C] hover:bg-[#D4AF37] hover:text-[#07172E] transition-colors duration-200 px-6 sm:px-8 py-3 sm:py-4 rounded-xl flex items-center justify-center gap-3 font-semibold w-full sm:w-auto"
+                className="border-2 border-[#D4AF37] bg-[#D4AF37] !text-gray-900 hover:bg-[#bf9830] active:bg-[#bf9830] active:scale-[.98] focus-visible:bg-[#bf9830] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F5CB5C] transition-all duration-300 hover:-translate-y-1 px-6 sm:px-8 py-3 sm:py-4 rounded-xl flex items-center justify-center gap-3 font-semibold w-full sm:w-auto"
               >
                 {pick(hero, "viewPracticeAreas", lang)}
 
@@ -108,7 +108,7 @@ export default function Hero() {
             {/* Cards */}
 
             <div className="hidden lg:flex absolute right-0 top-1/2 -translate-y-1/2 flex-col gap-5">
-              <div className="bg-[#081B36]/75 backdrop-blur-xl border border-[#D4AF37]/30 rounded-2xl px-6 py-5 flex items-center gap-4 shadow-2xl">
+              <div className="motion-rise bg-[#081B36]/75 backdrop-blur-xl border border-[#D4AF37]/30 rounded-2xl px-6 py-5 flex items-center gap-4 shadow-2xl transition-transform duration-300 hover:-translate-x-2" style={{ animationDelay: "300ms" }}>
                 <div className="w-12 h-12 rounded-full bg-[#D4AF37]/10 flex items-center justify-center">
                   <ShieldCheck size={26} className="text-[#D4AF37]" />
                 </div>
@@ -122,7 +122,7 @@ export default function Hero() {
                 </div>
               </div>
 
-              <div className="bg-[#081B36]/75 backdrop-blur-xl border border-[#D4AF37]/30 rounded-2xl px-6 py-5 flex items-center gap-4 shadow-2xl">
+              <div className="motion-rise bg-[#081B36]/75 backdrop-blur-xl border border-[#D4AF37]/30 rounded-2xl px-6 py-5 flex items-center gap-4 shadow-2xl transition-transform duration-300 hover:-translate-x-2" style={{ animationDelay: "420ms" }}>
                 <div className="w-12 h-12 rounded-full bg-[#D4AF37]/10 flex items-center justify-center">
                   <Scale size={26} className="text-[#D4AF37]" />
                 </div>
@@ -136,7 +136,7 @@ export default function Hero() {
                 </div>
               </div>
 
-              <div className="bg-[#081B36]/75 backdrop-blur-xl border border-[#D4AF37]/30 rounded-2xl px-6 py-5 flex items-center gap-4 shadow-2xl">
+              <div className="motion-rise bg-[#081B36]/75 backdrop-blur-xl border border-[#D4AF37]/30 rounded-2xl px-6 py-5 flex items-center gap-4 shadow-2xl transition-transform duration-300 hover:-translate-x-2" style={{ animationDelay: "540ms" }}>
                 <div className="w-12 h-12 rounded-full bg-[#D4AF37]/10 flex items-center justify-center">
                   <BriefcaseBusiness size={26} className="text-[#D4AF37]" />
                 </div>

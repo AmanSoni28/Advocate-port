@@ -12,6 +12,7 @@ import { useBookingModal } from "@/context/BookingModalContext.jsx";
 import { useHomeContent } from "@/components/HomeContentProvider.jsx";
 import { pick } from "@/lib/pickField";
 import { imageUrl } from "@/lib/imageUrl";
+import Reveal from "@/components/Shared/Reveal.jsx";
 
 const featureIcons = [CalendarDays, ShieldCheck, Scale];
 
@@ -25,7 +26,7 @@ export default function ConsultationBanner() {
     <section className="relative bg-white overflow-hidden">
       <div className="absolute inset-0" />
       <div className="container relative z-10">
-        <div className="group relative overflow-hidden rounded-[28px] border border-[#D4AF37]/20 bg-[#07172E]  transition-colors duration-300 hover:border-[#D4AF37]/40">
+        <Reveal className="group relative overflow-hidden rounded-[28px] border border-[#D4AF37]/20 bg-[#07172E] transition-all duration-300 hover:border-[#D4AF37]/40 hover:shadow-[0_24px_60px_rgba(7,23,46,.18)]">
 
           <div className="pointer-events-none absolute inset-0 bg-white/[0.03] backdrop-blur-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
@@ -36,7 +37,7 @@ export default function ConsultationBanner() {
                   src={imageUrl(consultationBanner.bgImageId) || "/images/banner-scale.png"}
                   alt="Consultation"
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
               </div>
 
@@ -57,9 +58,9 @@ export default function ConsultationBanner() {
               {featureIcons.map((Icon, index) => (
                 <div
                   key={features[index]?._id || index}
-                  className="flex flex-col items-center rounded-2xl px-4 py-5 transition-colors duration-300 hover:bg-white/5"
+                  className="group/feature flex flex-col items-center rounded-2xl px-4 py-5 transition-all duration-300 hover:bg-white/5 hover:-translate-y-1"
                 >
-                  <div className="relative w-12 h-12 rounded-full border border-[#D4AF37]/30 bg-[#D4AF37]/10 flex items-center justify-center text-[#D4AF37]">
+                  <div className="relative w-12 h-12 rounded-full border border-[#D4AF37]/30 bg-[#D4AF37]/10 flex items-center justify-center text-[#D4AF37] transition-transform duration-300 group-hover/feature:scale-110 group-hover/feature:rotate-6">
                     <Icon size={20} />
                   </div>
                   <h4 className="mt-4 text-white text-[14px] font-semibold">
@@ -76,7 +77,7 @@ export default function ConsultationBanner() {
               <button
                 type="button"
                 onClick={openModal}
-                className="bg-[#D4AF37] hover:bg-[#c79e24] text-[#07172E] font-semibold text-[14px] px-7 py-4 rounded-lg shadow-xl transition-colors duration-300 whitespace-nowrap"
+                className="bg-[#D4AF37] hover:bg-[#c79e24] text-[#07172E] font-semibold text-[14px] px-7 py-4 rounded-lg shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl whitespace-nowrap"
               >
                 <span className="flex items-center gap-2">
                   {pick(consultationBanner, "cta", lang)}
@@ -85,7 +86,7 @@ export default function ConsultationBanner() {
               </button>
             </div>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

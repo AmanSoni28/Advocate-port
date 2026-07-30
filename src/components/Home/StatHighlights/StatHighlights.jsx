@@ -10,6 +10,7 @@ import {
 import { useLanguage } from "@/context/LanguageContext.jsx";
 import { useHomeContent } from "@/components/HomeContentProvider.jsx";
 import { pick } from "@/lib/pickField";
+import Reveal from "@/components/Shared/Reveal.jsx";
 
 const statIcons = [Users, Briefcase, Scale, Clock3, Building2];
 const statKeys = [
@@ -32,17 +33,17 @@ export default function StatHighlights({ overlap = true }) {
       }`}
     >
       <div className="container">
-        <div className="relative overflow-hidden rounded-2xl border border-[#D4AF37]/60 bg-[#07172E] shadow-2xl px-2 sm:px-6">
+        <Reveal className="relative overflow-hidden rounded-2xl border border-[#D4AF37]/60 bg-[#07172E] shadow-2xl px-2 sm:px-6">
           <div className="grid divide-y divide-white/10 sm:grid-cols-2 sm:divide-y-0 sm:divide-x sm:divide-white/10 lg:grid-cols-5">
             {statKeys.map((key, index) => {
               const Icon = statIcons[index];
               return (
                 <div
                   key={key}
-                  className="flex items-center gap-4 px-6 py-7 transition-colors duration-300 hover:bg-white/5"
+                  className="group flex items-center gap-4 px-6 py-7 transition-all duration-300 hover:bg-white/5 hover:-translate-y-1"
                 >
                   {/* Icon */}
-                  <Icon className="h-7 w-7 shrink-0 text-[#D4AF37]" />
+                  <Icon className="h-7 w-7 shrink-0 text-[#D4AF37] transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6" />
 
                   {/* Text */}
                   <div>
@@ -60,7 +61,7 @@ export default function StatHighlights({ overlap = true }) {
               );
             })}
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

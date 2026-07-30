@@ -33,7 +33,7 @@ pointer-events-none
         {/* Heading */}
 
         {showHeading && (
-          <div className="text-center mb-16">
+          <div className="motion-rise text-center mb-16">
             <span className="text-[#D4AF37] uppercase tracking-[3px] text-sm font-semibold">
               {pick(practice, "eyebrow", lang)}
             </span>
@@ -87,6 +87,7 @@ leading-8
                 href="/practice-areas"
                 className="
 group
+motion-rise
 relative
 overflow-hidden
 flex
@@ -102,7 +103,9 @@ transition-all
 duration-300
 hover:border-[#D4AF37]
 hover:shadow-[0_10px_30px_rgba(212,175,55,.14)]
+hover:-translate-y-1
 "
+                style={{ animationDelay: `${Math.min(index, 5) * 70}ms` }}
               >
                 <div
                   className="

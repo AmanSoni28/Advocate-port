@@ -207,7 +207,7 @@ export default function Navbar() {
 
         {menuOpen && (
 
-          <div className="xl:hidden bg-[#07172E]">
+          <div className="motion-rise xl:hidden border-t border-[#D4AF37]/15 bg-[#07172E] shadow-2xl">
 
             <div className="flex flex-col py-6">
 
@@ -220,7 +220,7 @@ export default function Navbar() {
                   key={item.key}
                   href={item.href}
                   onClick={() => setMenuOpen(false)}
-                  className={`px-6 py-4 border-l-2 transition-colors duration-200 ${
+                  className={`px-6 py-4 border-l-2 transition-all duration-300 hover:translate-x-1 ${
                     active
                       ? "!text-[#D4AF37] bg-[#0f2748] border-[#D4AF37]"
                       : "!text-white border-transparent hover:bg-[#0f2748]"
