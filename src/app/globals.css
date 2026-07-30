@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+
+html{
+  scroll-behavior:smooth;
+}
+
+.container{
+  width:100%;
+  max-width:1400px;
+  margin:auto;
+  padding:0 24px;
+}
+
+.heading-font{
+  font-family:var(--font-playfair);
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+ul{
+  list-style:none;
+}
+
+/* img{
+  display:block;
+  max-width:100%;
+} */
+
+button{
+  cursor:pointer;
+}
+
+::-webkit-scrollbar{
+  width:8px;
+}
+
+::-webkit-scrollbar-track{
+  background:#07172E;
+}
+
+::-webkit-scrollbar-thumb{
+  background:#D4AF37;
+  border-radius:10px;
+}
+
+
+
+
+/*For Testimonial.jsx */
+
+.swiper-pagination{
+margin-top:24px;
+position:relative !important;
+}
+
+.swiper-pagination-bullet{
+width:10px;
+height:10px;
+background:#ffffff;
+opacity:.55;
+transition:.3s;
+}
+
+.swiper-pagination-bullet-active{
+background:#D4AF37;
+width:34px;
+border-radius:20px;
+}
