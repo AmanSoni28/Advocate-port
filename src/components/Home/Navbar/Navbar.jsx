@@ -34,11 +34,11 @@ export default function Navbar() {
     <>
       {/* TOP BAR */}
 
-      <div className="hidden lg:block bg-[#07172E] text-white border-b border-[#D4AF37]/20">
+      <div className="bg-[#07172E] text-white border-b border-[#D4AF37]/20">
 
         <div className="container flex justify-between items-center h-10 text-sm">
 
-          <div className="flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-8">
 
             <a href={`tel:${settings.phone}`} className="flex items-center gap-2 hover:text-[#D4AF37] transition-colors duration-200">
               <Phone size={15} className="text-[#D4AF37]" />
@@ -52,9 +52,17 @@ export default function Navbar() {
 
           </div>
 
-          <div className="flex items-center gap-6">
+          <a
+            href={`tel:${settings.phone}`}
+            className="flex lg:hidden items-center gap-1 text-xs hover:text-[#D4AF37] transition-colors duration-200"
+          >
+            <Phone size={14} className="text-[#D4AF37]" />
+            {settings.phone}
+          </a>
 
-            <div className="flex items-center gap-2">
+          <div className="ml-auto flex items-center gap-6">
+
+            <div className="hidden lg:flex items-center gap-2">
               <Clock size={15} className="text-[#D4AF37]" />
               {pick(navbar, "workingHours", lang)}
             </div>
