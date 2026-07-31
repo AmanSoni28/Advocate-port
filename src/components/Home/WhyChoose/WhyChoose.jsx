@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { Navigation, Autoplay } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -99,9 +99,14 @@ export default function WhyChoose() {
           {/* Swiper */}
 
           <Swiper
-            modules={[Navigation]}
+            modules={[Navigation, Autoplay]}
             loop={true}
             spaceBetween={0}
+            autoplay={{
+              delay: 3500,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+            }}
             navigation={{
               prevEl: prevRef.current,
               nextEl: nextRef.current,

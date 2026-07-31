@@ -11,7 +11,7 @@ export default function TestimonialsGrid() {
   const items = testimonials.items || [];
 
   return (
-    <section className="relative py-16 bg-[#07172E] overflow-hidden">
+    <section className="relative py-16 bg-[#07172E] overflow-hidden mb-10">
 
       <div className="absolute -top-40 -left-40 w-96 h-96 rounded-full bg-[#D4AF37]/10 blur-[140px]" />
       <div className="absolute -bottom-40 -right-40 w-96 h-96 rounded-full bg-[#D4AF37]/10 blur-[140px]" />

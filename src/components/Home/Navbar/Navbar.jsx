@@ -207,7 +207,7 @@ export default function Navbar() {
 
         {menuOpen && (
 
-          <div className="motion-rise xl:hidden border-t border-[#D4AF37]/15 bg-[#07172E] shadow-2xl">
+          <div className="motion-rise xl:hidden border-t border-[#D4AF37]/15 bg-[#07172E] shadow-2xl hover:bg-gray-500">
 
             <div className="flex flex-col py-6">
 
