@@ -14,6 +14,7 @@ const pageHeroEntryFields = [
   { key: "title", type: "text", label: "Title" },
   { key: "subtitle", type: "textarea", label: "Subtitle" },
   { key: "current", type: "text", label: "Breadcrumb Label" },
+  { key: "backgroundImageId", type: "image", label: "Background Image" },
 ];
 
 export const groups = [

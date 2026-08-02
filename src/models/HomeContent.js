@@ -362,6 +362,7 @@ const PageHeroEntrySchema = new Schema(
     subtitle_hi: { type: String, default: "" },
     current_en: { type: String, default: "" },
     current_hi: { type: String, default: "" },
+    backgroundImageId: ImageRef,
   },
   { _id: false }
 );
