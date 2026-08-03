@@ -26,7 +26,7 @@ export default function PageHero({ pageKey }) {
           style={{ backgroundImage: `url(${backgroundImage})` }}
         />
       )}
-      <div className="pointer-events-none absolute inset-0 bg-[#07172E]/25" />
+      <div className="pointer-events-none absolute inset-0 bg-[#07172E]/10" />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#07172E]/90 " />
       <div className="pointer-events-none absolute -top-24 -left-24 w-80 h-80 rounded-full bg-[#D4AF37]/10 blur-[130px]" />
       <div className="pointer-events-none absolute -bottom-24 -right-24 w-80 h-80 rounded-full bg-[#D4AF37]/10 blur-[140px]" />

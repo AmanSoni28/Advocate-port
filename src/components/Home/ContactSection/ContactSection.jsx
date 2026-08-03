@@ -6,11 +6,14 @@ import { useLanguage } from "@/context/LanguageContext.jsx";
 import { useHomeContent, useSiteSettings } from "@/components/HomeContentProvider.jsx";
 import { pick } from "@/lib/pickField";
 import { imageUrl } from "@/lib/imageUrl";
+import { RiAdminFill } from "react-icons/ri";
+import { useRouter } from "next/navigation";
 
 export default function ContactSection() {
   const { lang, t } = useLanguage();
   const { contactSection } = useHomeContent();
   const settings = useSiteSettings();
+  const router = useRouter();
 
   return (
     <section id="contact" className="relative overflow-hidden bg-white py-10 scroll-mt-24">
@@ -88,7 +91,19 @@ export default function ContactSection() {
             >
               Boot & Boost Entrepreneur LLP
             </a>
+
+            
+            <div className="relative inline-block group">
+              <RiAdminFill onClick={()=>router.push('/admin')} size={16} fill="white" color="white" className="cursor-pointer" />
+              <span className="absolute -top-10 left-1/2 -translate-x-1/2 bg-black text-white text-xs px-3 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                Admin Panel
+              </span>
+            </div>
+
           </div>
+
+          
+          
         </div>
       </div>
     </section>
