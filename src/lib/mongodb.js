@@ -22,8 +22,14 @@ export async function dbConnect() {
       .connect(DB_URL, {
         dbName: "advo",
         bufferCommands: false,
+        serverSelectionTimeoutMS: 10_000,
       })
-      .then((mongooseInstance) => mongooseInstance);
+      .then((mongooseInstance) => mongooseInstance)
+      .catch((error) => {
+        // Permit a later request to retry after a transient connection failure.
+        cached.promise = null;
+        throw error;
+      });
   }
 
   cached.conn = await cached.promise;
