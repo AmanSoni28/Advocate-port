@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa";
 
 export default function AdminLoginPage() {
   const router = useRouter();
@@ -9,6 +11,7 @@ export default function AdminLoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [pending, setPending] = useState(false);
+  const [eyeOpen,setEyeOpen] = useState(false);
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -60,15 +63,21 @@ export default function AdminLoginPage() {
           />
         </label>
 
-        <label className="mt-4 block text-sm font-medium text-[#07172E]">
+        <label className="relative mt-4 block text-sm font-medium text-[#07172E]">
           Password
           <input
-            type="password"
+            type={eyeOpen ? "text" : "password"}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
             className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-[#D4AF37] focus:outline-none"
           />
+          <span
+            className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer text-gray-500 mt-3"
+            onClick={() => setEyeOpen(!eyeOpen)}
+          >
+            {eyeOpen ? <FaEye /> : <FaEyeSlash />}
+          </span>
         </label>
 
         {error && (
