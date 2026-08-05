@@ -222,30 +222,34 @@ font-semibold
 </span>
 
 <div
-className="
-w-12
-h-12
-rounded-full
-border
-border-[#D4AF37]
-flex
-items-center
-justify-center
-transition-colors
-duration-300
-group-hover:bg-[#D4AF37]
-"
+    className="
+    w-12
+    h-12
+    rounded-full
+    border
+    border-[#D4AF37]
+    flex
+    items-center
+    justify-center
+    transition-colors
+    duration-300
+    group-hover:bg-[#D4AF37]
+    cursor-pointer
+    pointer-events-auto
+    z-10
+    "
 >
 
-<ArrowUpRight
-size={18}
-className="
-text-[#D4AF37]
-group-hover:text-white
-transition-colors
-duration-300
-"
-/>
+    <ArrowUpRight
+        size={18}
+        className="
+        text-[#D4AF37]
+        group-hover:text-white
+        transition-colors
+        duration-300
+        stroke-current
+        "
+    />
 
 </div>
 

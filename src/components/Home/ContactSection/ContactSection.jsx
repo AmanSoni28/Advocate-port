@@ -102,8 +102,7 @@ export default function ContactSection() {
 
           </div>
 
-          
-          
+        
         </div>
       </div>
     </section>
@@ -112,13 +111,13 @@ export default function ContactSection() {
 
 function ContactItem({ icon, label, value }) {
   return (
-    <div className="flex gap-4">
-      <div className="flex h-11 w-11 items-center justify-center rounded-full border border-[#D4AF37]/20 bg-linear-to-br from-[#D4AF37]/20 to-[#D4AF37]/5">
+    <div className="flex items-start gap-4">
+      <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full border border-[#D4AF37]/20 bg-linear-to-br from-[#D4AF37]/20 to-[#D4AF37]/5">
         {icon}
       </div>
-      <div>
+      <div className="min-w-0">
         <h4 className="text-sm font-semibold text-[#07172E]">{label}</h4>
-        <p className="mt-1 text-sm leading-6 text-[#6b7280]">{value}</p>
+        <p className="mt-1 text-sm leading-6 text-[#6b7280] break-words">{value}</p>
       </div>
     </div>
   );

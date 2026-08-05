@@ -161,7 +161,7 @@ export default function Testimonials() {
         <div className="text-center">
           <Link
             href="/testimonials"
-            className="inline-flex items-center gap-2 mt-2 text-white font-semibold hover:text-[#D4AF37] transition-colors duration-300"
+            className="inline-flex items-center gap-2 mt-2 !text-[#D4AF37] font-semibold transition-colors duration-300"
           >
             {pick(testimonials, "viewAll", lang)} →
           </Link>
