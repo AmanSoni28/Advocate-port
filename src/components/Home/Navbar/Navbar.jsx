@@ -78,7 +78,7 @@ export default function Navbar() {
                   lang === "hi" ? "bg-[#D4AF37] text-[#07172E]" : "text-white/70"
                 }`}
               >
-                हिं
+                हिंदी
               </span>
               <span
                 className={`px-2 py-1 rounded-full transition-colors duration-200 ${
