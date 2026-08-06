@@ -112,7 +112,7 @@ export const sections = {
     ],
   },
 
-  inquiries: { label: "CRM Inquiries", navLabel: "CRM Inquiries", model: "inquiries", fields: [] },
+  inquiries: { label: "Inquiries", navLabel: "Inquiries", model: "inquiries", fields: [] },
 
   disclaimer: {
     label: "Disclaimer Modal",
