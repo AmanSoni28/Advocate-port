@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 import {
   LayoutDashboard,
   Menu,
@@ -23,6 +24,7 @@ import {
   Trophy,
   FileStack,
   Gavel,
+  ChevronDown,
   X,
 } from "lucide-react";
 import { groups, sections } from "@/lib/adminSections";
@@ -59,6 +61,9 @@ function sectionHref(sectionKey) {
 
 export default function AdminSidebar({ mobileOpen, onClose }) {
   const pathname = usePathname();
+  const [openGroups, setOpenGroups] = useState(() =>
+    Object.fromEntries(groups.filter((group) => group.collapsible).map((group) => [group.key, group.sections.some((key) => pathname === sectionHref(key))]))
+  );
 
   const nav = (
     <nav className="px-3 py-4">
@@ -70,12 +75,17 @@ export default function AdminSidebar({ mobileOpen, onClose }) {
         onNavigate={onClose}
       />
 
-      {groups.map((group) => (
+      {groups.map((group) => {
+        const isOpen = !group.collapsible || openGroups[group.key];
+        const hasActiveChild = group.sections.some((key) => pathname === sectionHref(key));
+        return (
         <div key={group.key} className="mt-5">
-          <p className="px-3 text-[11px] font-semibold uppercase tracking-wider text-white/40">
-            {group.label}
-          </p>
-          <div className="mt-2 space-y-0.5">
+          {group.collapsible ? (
+            <button type="button" onClick={() => setOpenGroups((current) => ({ ...current, [group.key]: !isOpen }))} className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-[11px] font-semibold uppercase tracking-wider transition-colors ${hasActiveChild ? "bg-[#0f2748] text-[#E7C254]" : "text-white/55 hover:bg-white/5 hover:text-white"}`} aria-expanded={isOpen}>
+              {group.label}<ChevronDown size={16} className={`transition-transform ${isOpen ? "rotate-180" : ""}`} />
+            </button>
+          ) : <p className="px-3 text-[11px] font-semibold uppercase tracking-wider text-white/40">{group.label}</p>}
+          {isOpen && <div className={`mt-2 space-y-0.5 ${group.collapsible ? "ml-3 border-l border-white/10 pl-2" : ""}`}>
             {group.sections.map((sectionKey) => {
               const section = sections[sectionKey];
               const href = sectionHref(sectionKey);
@@ -92,9 +102,9 @@ export default function AdminSidebar({ mobileOpen, onClose }) {
                 />
               );
             })}
-          </div>
+          </div>}
         </div>
-      ))}
+      )})}
     </nav>
   );
 

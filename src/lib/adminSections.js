@@ -21,7 +21,13 @@ export const groups = [
   {
     key: "header",
     label: "Header & Contact",
-    sections: ["navbar", "bookingModal", "consultationForm", "inquiries", "siteSettings"],
+    sections: ["navbar", "bookingModal", "consultationForm", "siteSettings"],
+  },
+  {
+    key: "crm",
+    label: "CRM",
+    collapsible: true,
+    sections: ["inquiries"],
   },
   {
     key: "hero-stats",
