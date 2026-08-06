@@ -1,6 +1,6 @@
 import { Poppins, Playfair_Display } from "next/font/google";
 import Providers from "@/context/Providers.jsx";
-import { getHomeContent, getSiteSettings } from "@/lib/content";
+import { getConsultationForm, getHomeContent, getSiteSettings } from "@/lib/content";
 import "./globals.css";
 
 export const dynamic = "force-dynamic";
@@ -23,12 +23,12 @@ export const metadata={
 }
 
 export default async function RootLayout({children}){
-  const [home, settings] = await Promise.all([getHomeContent(), getSiteSettings()]);
+  const [home, settings, consultationForm] = await Promise.all([getHomeContent(), getSiteSettings(), getConsultationForm()]);
 
   return(
     <html lang="en" data-scroll-behavior="smooth">
       <body className={`${poppins.variable} ${playfair.variable}`}>
-        <Providers home={home} settings={settings}>{children}</Providers>
+        <Providers home={home} settings={settings} consultationForm={consultationForm}>{children}</Providers>
       </body>
     </html>
   )

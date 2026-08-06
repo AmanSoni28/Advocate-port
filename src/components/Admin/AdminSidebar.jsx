@@ -6,6 +6,7 @@ import {
   LayoutDashboard,
   Menu,
   CalendarDays,
+  ClipboardList,
   ShieldAlert,
   Home,
   BarChart3,
@@ -29,6 +30,8 @@ import { groups, sections } from "@/lib/adminSections";
 const sectionIcons = {
   navbar: Menu,
   bookingModal: CalendarDays,
+  consultationForm: CalendarDays,
+  inquiries: ClipboardList,
   disclaimer: ShieldAlert,
   hero: Home,
   stats: BarChart3,
@@ -49,6 +52,8 @@ const sectionIcons = {
 
 function sectionHref(sectionKey) {
   const section = sections[sectionKey];
+  if (section.model === "consultationForm") return "/admin/consultation-form";
+  if (section.model === "inquiries") return "/admin/crm/inquiries";
   return section.model === "settings" ? "/admin/site-settings" : `/admin/home/${sectionKey}`;
 }
 

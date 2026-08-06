@@ -21,7 +21,7 @@ export const groups = [
   {
     key: "header",
     label: "Header & Contact",
-    sections: ["navbar", "bookingModal", "siteSettings"],
+    sections: ["navbar", "bookingModal", "consultationForm", "inquiries", "siteSettings"],
   },
   {
     key: "hero-stats",
@@ -92,6 +92,21 @@ export const sections = {
       { key: "hoursLabel", type: "text", label: "Hours Label" },
     ],
   },
+
+  consultationForm: {
+    label: "Consultation Form CMS",
+    navLabel: "Consultation Form",
+    model: "consultationForm",
+    fields: [
+      { key: "title", type: "plainText", label: "Form Title" },
+      { key: "description", type: "textareaPlain", label: "Form Description" },
+      { key: "legalMatterOptions", type: "list", label: "Legal Matter Options", itemFields: [{ key: "value", type: "plainText", label: "Option" }] },
+      { key: "timeSlots", type: "list", label: "Consultation Time Slots", itemFields: [{ key: "value", type: "plainText", label: "Time Slot" }] },
+      { key: "submitLabel", type: "plainText", label: "Submit Button Text" },
+    ],
+  },
+
+  inquiries: { label: "CRM Inquiries", navLabel: "CRM Inquiries", model: "inquiries", fields: [] },
 
   disclaimer: {
     label: "Disclaimer Modal",

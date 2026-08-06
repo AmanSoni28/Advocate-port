@@ -26,6 +26,16 @@ export default function Field({ field, data, update }) {
         />
       );
 
+    case "textareaPlain":
+      return (
+        <PlainTextField
+          label={field.label}
+          multiline
+          value={value}
+          onChange={(v) => update({ ...data, [field.key]: v })}
+        />
+      );
+
     case "plainText":
       return (
         <PlainTextField
