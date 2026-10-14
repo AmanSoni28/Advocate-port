@@ -20,6 +20,7 @@ export default function BookingModal() {
   const config = { ...defaults, ...(useConsultationForm() || {}) };
   const [form, setForm] = useState(initialForm);
   const [state, setState] = useState({ sending: false, message: "", success: false });
+  const [now, setNow] = useState(null);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -29,7 +30,28 @@ export default function BookingModal() {
     return () => { document.body.style.overflow = "auto"; window.removeEventListener("keydown", onKeyDown); };
   }, [isOpen, closeModal]);
 
+  useEffect(() => {
+    if (!isOpen) return;
+    const updateClock = () => setNow(new Date());
+    updateClock();
+    const intervalId = window.setInterval(updateClock, 30_000);
+    return () => window.clearInterval(intervalId);
+  }, [isOpen]);
+
   function update(key, value) { setForm((current) => ({ ...current, [key]: value })); }
+  const today = now ? localDateString(now) : "";
+  const availableTimeSlots = config.timeSlots.filter((slot) => {
+    if (!form.consultationDate || form.consultationDate !== today || !now) return Boolean(slot);
+    const startMinutes = getSlotStartMinutes(slot);
+    return Boolean(slot) && startMinutes !== null && startMinutes >= now.getHours() * 60 + now.getMinutes();
+  });
+
+  useEffect(() => {
+    if (form.timeSlot && !availableTimeSlots.includes(form.timeSlot)) {
+      update("timeSlot", "");
+    }
+  }, [form.timeSlot, availableTimeSlots]);
+
   async function submit(event) {
     event.preventDefault();
     if (!form.consent) return setState({ sending: false, success: false, message: "Please agree before submitting." });
@@ -66,7 +88,7 @@ export default function BookingModal() {
           <div className="mt-4"><Field label="Legal Matter Type *"><select required value={form.legalMatter} onChange={(e) => update("legalMatter", e.target.value)} className={inputClass}><option value="" className="text-slate-900">Select the type of legal matter</option>{config.legalMatterOptions.filter(Boolean).map((item) => <option key={item} value={item} className="text-slate-900">{item}</option>)}</select></Field></div>
           <div className="mt-4"><Field label="Subject *"><input required value={form.subject} onChange={(e) => update("subject", e.target.value)} placeholder="Enter subject of your inquiry" className={inputClass} /></Field></div>
           <div className="mt-4"><Field label="Brief Description of Your Case *"><textarea required rows="4" value={form.description} onChange={(e) => update("description", e.target.value)} placeholder="Please describe your legal issue briefly. Include relevant dates or important details if applicable." className={inputClass} /></Field></div>
-          <div className="mt-5 grid gap-5 sm:grid-cols-2"><fieldset><legend className={labelClass}>Preferred Contact Method *</legend><div className="mt-2 flex flex-wrap gap-x-4 gap-y-2">{["Phone Call", "WhatsApp", "Email"].map((method) => <label key={method} className="flex cursor-pointer items-center gap-2 text-xs text-slate-200"><input type="radio" checked={form.contactMethod === method} onChange={() => update("contactMethod", method)} className="accent-[#D4AF37]" />{method}</label>)}</div></fieldset><div className="grid grid-cols-2 gap-3"><Field label="Preferred Date *"><input required type="date" min={new Date().toISOString().slice(0, 10)} value={form.consultationDate} onChange={(e) => update("consultationDate", e.target.value)} className={inputClass} /></Field><Field label="Time Slot *"><select required value={form.timeSlot} onChange={(e) => update("timeSlot", e.target.value)} className={inputClass}><option value="" className="text-slate-900">Select</option>{config.timeSlots.filter(Boolean).map((slot) => <option key={slot} value={slot} className="text-slate-900">{slot}</option>)}</select></Field></div></div>
+          <div className="mt-5 grid gap-5 sm:grid-cols-2"><fieldset><legend className={labelClass}>Preferred Contact Method *</legend><div className="mt-2 flex flex-wrap gap-x-4 gap-y-2">{["Phone Call", "WhatsApp", "Email"].map((method) => <label key={method} className="flex cursor-pointer items-center gap-2 text-xs text-slate-200"><input type="radio" checked={form.contactMethod === method} onChange={() => update("contactMethod", method)} className="accent-[#D4AF37]" />{method}</label>)}</div></fieldset><div className="grid grid-cols-2 gap-3"><Field label="Preferred Date *"><input required type="date" min={today || undefined} value={form.consultationDate} onChange={(e) => setForm((current) => ({ ...current, consultationDate: e.target.value, timeSlot: "" }))} className={inputClass} /></Field><Field label="Time Slot *"><select required value={form.timeSlot} onChange={(e) => update("timeSlot", e.target.value)} className={inputClass}><option value="" className="text-slate-900">{availableTimeSlots.length ? "Select" : "No upcoming slots available"}</option>{availableTimeSlots.map((slot) => <option key={slot} value={slot} className="text-slate-900">{slot}</option>)}</select></Field></div></div>
           <label className="mt-5 flex cursor-pointer items-start gap-2.5 text-xs leading-5 text-slate-300"><input type="checkbox" checked={form.consent} onChange={(e) => update("consent", e.target.checked)} className="mt-1 accent-[#D4AF37]" />I agree to be contacted regarding my legal inquiry and understand that submitting this form does not establish an attorney-client relationship.</label>
           <button disabled={state.sending} className="mt-5 flex w-full items-center justify-center gap-2 rounded-lg bg-[#D4AF37] px-4 py-3.5 text-sm font-semibold text-[#07172E] transition hover:bg-[#e4c55b] disabled:opacity-60"><Scale size={17} />{state.sending ? "Submitting..." : config.submitLabel}</button>
           {state.message && <p className={`mt-3 text-center text-sm ${state.success ? "text-emerald-300" : "text-red-300"}`}>{state.success && <CheckCircle2 className="mr-1 inline" size={16} />}{state.message}</p>}
@@ -78,3 +100,28 @@ export default function BookingModal() {
 }
 
 function Field({ label, children }) { return <label className="block"><span className="text-xs font-medium text-slate-200">{label}</span>{children}</label>; }
+
+function localDateString(date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+function getSlotStartMinutes(slot) {
+  const match = slot.match(/^\s*(\d{1,2})(?::(\d{2}))?\s*(AM|PM)?\b/i);
+  if (!match) return null;
+
+  const hour = Number(match[1]);
+  const minute = Number(match[2] || 0);
+  const meridiem = match[3]?.toUpperCase();
+  if (minute > 59) return null;
+
+  if (meridiem) {
+    if (hour < 1 || hour > 12) return null;
+    return ((hour % 12) + (meridiem === "PM" ? 12 : 0)) * 60 + minute;
+  }
+
+  if (hour > 23) return null;
+  return hour * 60 + minute;
+}
